@@ -1,0 +1,214 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f0f0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.background .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 105, 97, 0.6);
+    transform: rotate(45deg);
+    animation: float 10s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-500px) rotate(45deg);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.8;
+    }
+}
+
+.card {
+    width: 90vw;
+    max-width: 350px;
+    height: 90vw;
+    max-height: 350px;
+    background: linear-gradient(135deg, #ff6f61, #ffb6b9);
+    border-radius: 15px; /* Subtle rounded corners */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    border-radius: 20px; /* Larger rounded corners on hover */
+}
+
+.card .heart {
+    width: 80px; /* Larger heart for better visibility */
+    height: 80px;
+    background: #fff;
+    position: relative;
+    transform: rotate(45deg);
+    animation: beat 1s infinite;
+}
+
+.card .heart::before,
+.card .heart::after {
+    content: '';
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.card .heart::before {
+    top: -40px; /* Adjusted for better positioning */
+    left: 0;
+}
+
+.card .heart::after {
+    left: -40px; /* Adjusted for better positioning */
+    top: 0;
+}
+
+.message {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 24px; /* Larger font size */
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); /* Enhanced text shadow */
+}
+
+.card:hover .message {
+    opacity: 1;
+}
+
+@keyframes beat {
+    0%, 100% {
+        transform: scale(1) rotate(45deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(45deg);
+    }
+}
+
+.letter {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 350px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.letter-content {
+    text-align: center;
+}
+
+.letter h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #ff6f61;
+}
+
+.letter p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 600px) {
+    .card {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .card .heart {
+        width: 60px;
+        height: 60px;
+    }
+
+    .message {
+        font-size: 20px;
+    }
+
+    .letter {
+        width: 95vw;
+        padding: 15px;
+    }
+
+    .letter h2 {
+        font-size: 22px;
+    }
+
+    .letter p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        width: 95vw;
+        height: 95vw;
+    }
+
+    .card .heart {
+        width: 50px;
+        height: 50px;
+    }
+
+    .message {
+        font-size: 18px;
+    }
+
+    .letter {
+        width: 95vw;
+        padding: 10px;
+    }
+
+    .letter h2 {
+        font-size: 20px;
+    }
+
+    .letter p {
+        font-size: 12px;
+    }
+}
